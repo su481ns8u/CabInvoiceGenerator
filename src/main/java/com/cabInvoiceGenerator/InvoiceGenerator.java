@@ -20,4 +20,12 @@ public class InvoiceGenerator {
         }
         return new InvoiceSummary(rides.length, totalFare);
     }
+
+    public void addRides(String userId, Ride[] rides) {
+
+    }
+
+    public InvoiceSummary getInvoiceSummary(String userId) {
+        return null;
+    }
 }
