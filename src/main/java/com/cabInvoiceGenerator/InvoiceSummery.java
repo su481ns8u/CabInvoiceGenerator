@@ -1,15 +1,14 @@
 package com.cabInvoiceGenerator;
 
-public class InvoiceSummary {
-
-    public int numberOfRide;
+class InvoiceSummary {
+    public int numberOfRides;
     public double totalFare;
     public double averageFare;
 
-    public InvoiceSummary(int numOfRides, double totalFair) {
-        this.numberOfRide = numOfRides;
+    public InvoiceSummary(int numberOfRides, double totalFair) {
+        this.numberOfRides = numberOfRides;
         this.totalFare = totalFare;
-        this.averageFare = totalFare;
+        this.averageFare = this.totalFare / this.numberOfRides;
     }
 
     @Override
@@ -17,8 +16,9 @@ public class InvoiceSummary {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         InvoiceSummary that = (InvoiceSummary) o;
-        return numberOfRide == that.numberOfRide &&
+        return numberOfRides == that.numberOfRides &&
                 Double.compare(that.totalFare, totalFare) == 0 &&
                 Double.compare(that.averageFare, averageFare) == 0;
     }
 }
+
