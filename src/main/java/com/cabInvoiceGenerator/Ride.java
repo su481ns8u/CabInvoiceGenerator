@@ -1,8 +1,11 @@
 package com.cabInvoiceGenerator;
 
 public class Ride {
+    public final double distance;
+    public final int time;
 
-    public Ride(double v, int i) {
-
+    public Ride(double distance, int time) {
+        this.distance = distance;
+        this.time = time;
     }
 }
