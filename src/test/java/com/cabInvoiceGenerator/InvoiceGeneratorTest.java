@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.cabInvoiceGenerator.InvoiceGenerator.RideType.NORMAL;
+import static com.cabInvoiceGenerator.InvoiceGenerator.RideType.*;
 
 public class InvoiceGeneratorTest {
     InvoiceGenerator invoiceGenerator;
@@ -57,9 +57,8 @@ public class InvoiceGeneratorTest {
     @Test
     public void givenCategories_WhenRideList_ShouldReturnInvoiceSummary() {
         String userId = "firstUser";
-        Ride rides[] = {new Ride(2.0, 5, InvoiceGenerator.RideType.PREMIUM),
-                new Ride(0.1, 1, InvoiceGenerator.RideType.PREMIUM)};
-        //Ride rides1[] = {new Ride(2.0, 5),new Ride(0.1, 1)};
+        Ride rides[] = {new Ride(2.0, 5, PREMIUM),
+                new Ride(0.1, 1, PREMIUM)};
         invoiceGenerator.addRides(userId,rides);
         InvoiceSummary summary = invoiceGenerator.getInvoiceSummary(userId);
         InvoiceSummary expectedSumry = new InvoiceSummary(2,60.0);

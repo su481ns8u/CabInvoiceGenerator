@@ -21,10 +21,22 @@ public class InvoiceGenerator {
         this.rideRepository = new RideRepository();
     }
 
+    /**
+     * Function for single ride
+     * @param distance
+     * @param time
+     * @param rideType
+     * @return
+     */
     public double calculateFare(double distance, int time, RideType rideType) {
         return this.calculateBasedOnRideType(distance, time, rideType);
     }
 
+    /**
+     * Function for multiple rides
+     * @param rides
+     * @return
+     */
     public InvoiceSummary calculateFare(Ride[] rides) {
         double totalFare = Arrays.stream(rides)
                 .mapToDouble(ride -> this.calculateFare(ride.distance, ride.time, ride.rideType))
@@ -32,14 +44,31 @@ public class InvoiceGenerator {
         return new InvoiceSummary(rides.length, totalFare);
     }
 
+    /**
+     * Function to add ride by user id
+     * @param userId
+     * @param rides
+     */
     public void addRides(String userId, Ride[] rides) {
         rideRepository.addRides(userId, rides);
     }
 
+    /**
+     * Function to get invoice summary by user id
+     * @param userId
+     * @return
+     */
     public InvoiceSummary getInvoiceSummary(String userId) {
         return this.calculateFare(rideRepository.getRides(userId));
     }
 
+    /**
+     * Function to choose ride and return fare
+     * @param distance
+     * @param time
+     * @param rideType
+     * @return
+     */
     public double calculateBasedOnRideType(double distance, int time, RideType rideType) {
         switch (rideType) {
             case PREMIUM:
