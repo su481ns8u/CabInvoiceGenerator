@@ -1,6 +1,6 @@
 package com.cabInvoiceGenerator.Repositories;
 
-import com.cabInvoiceGenerator.Exceptions.*;
+import com.cabInvoiceGenerator.Exceptions.InvoiceException;
 import com.cabInvoiceGenerator.models.Ride;
 
 import java.util.ArrayList;
@@ -20,12 +20,12 @@ public class RideRepository {
         if (!userRides.containsKey(userId))
             this.userRides.put(userId, new ArrayList<>(Arrays.asList(rides)));
         else
-            throw new InvoiceException("User Already Exists !", InvoiceException.ExceptionType.USER_PROBLEM);
+            throw new InvoiceException("User Already Exists !", InvoiceException.ExceptionType.USER_ALREADY_EXISTS);
     }
 
     public Ride[] getRides(String userId) throws InvoiceException {
         if (userRides.containsKey(userId))
             return this.userRides.get(userId).toArray(new Ride[0]);
-        throw new InvoiceException("User not exist !",InvoiceException.ExceptionType.USER_PROBLEM);
+        throw new InvoiceException("User not exist !", InvoiceException.ExceptionType.USER_NOT_EXIST);
     }
 }

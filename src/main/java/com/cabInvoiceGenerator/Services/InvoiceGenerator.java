@@ -1,9 +1,9 @@
 package com.cabInvoiceGenerator.Services;
 
 import com.cabInvoiceGenerator.Exceptions.InvoiceException;
+import com.cabInvoiceGenerator.Repositories.RideRepository;
 import com.cabInvoiceGenerator.models.InvoiceSummary;
 import com.cabInvoiceGenerator.models.Ride;
-import com.cabInvoiceGenerator.Repositories.RideRepository;
 
 import java.util.Arrays;
 
@@ -28,6 +28,7 @@ public class InvoiceGenerator {
 
     /**
      * Function for single ride
+     *
      * @param distance
      * @param time
      * @param rideType
@@ -39,6 +40,7 @@ public class InvoiceGenerator {
 
     /**
      * Function for multiple rides
+     *
      * @param rides
      * @return
      */
@@ -51,6 +53,7 @@ public class InvoiceGenerator {
 
     /**
      * Function to add ride by user id
+     *
      * @param userId
      * @param rides
      */
@@ -60,6 +63,7 @@ public class InvoiceGenerator {
 
     /**
      * Function to get invoice summary by user id
+     *
      * @param userId
      * @return
      */
@@ -69,6 +73,7 @@ public class InvoiceGenerator {
 
     /**
      * Function to choose ride and return fare
+     *
      * @param distance
      * @param time
      * @param rideType
