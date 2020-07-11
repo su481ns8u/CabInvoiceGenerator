@@ -1,10 +1,14 @@
 package com.cabInvoiceGenerator;
 
+import com.cabInvoiceGenerator.Exceptions.InvoiceException;
+import com.cabInvoiceGenerator.Services.InvoiceGenerator;
+import com.cabInvoiceGenerator.models.InvoiceSummary;
+import com.cabInvoiceGenerator.models.Ride;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.cabInvoiceGenerator.InvoiceGenerator.RideType.*;
+import static com.cabInvoiceGenerator.Services.InvoiceGenerator.RideType.*;
 
 public class InvoiceGeneratorTest {
     InvoiceGenerator invoiceGenerator;
@@ -44,7 +48,7 @@ public class InvoiceGeneratorTest {
     }
 
     @Test
-    public void givenUserIdAndRides_shouldReturnInvoiceSummary() {
+    public void givenUserIdAndRides_shouldReturnInvoiceSummary() throws InvoiceException {
         String userId = "firstUser";
         Ride[] rides = { new Ride(2.0, 5, NORMAL),
                 new Ride(0.1, 1, NORMAL)};
@@ -55,7 +59,7 @@ public class InvoiceGeneratorTest {
     }
 
     @Test
-    public void givenCategories_WhenRideList_ShouldReturnInvoiceSummary() {
+    public void givenCategories_WhenRideList_ShouldReturnInvoiceSummary() throws InvoiceException {
         String userId = "firstUser";
         Ride rides[] = {new Ride(2.0, 5, PREMIUM),
                 new Ride(0.1, 1, PREMIUM)};
@@ -63,5 +67,20 @@ public class InvoiceGeneratorTest {
         InvoiceSummary summary = invoiceGenerator.getInvoiceSummary(userId);
         InvoiceSummary expectedSumry = new InvoiceSummary(2,60.0);
         Assert.assertEquals(summary,expectedSumry);
+    }
+
+    @Test
+    public void givenUserId_WhenNotExists_throwsException() {
+        try {
+            String userId = "firstUser";
+            String wrongId = "ANY";
+            Ride rides[] = {new Ride(2.0, 5, PREMIUM),
+                    new Ride(0.1, 1, PREMIUM)};
+            invoiceGenerator.addRides(userId,rides);
+            InvoiceSummary summary = invoiceGenerator.getInvoiceSummary(wrongId);
+            InvoiceSummary expectedSumry = new InvoiceSummary(2,60.0);
+        } catch (InvoiceException e) {
+            Assert.assertEquals(InvoiceException.ExceptionType.USER_PROBLEM, e.type);
+        }
     }
 }

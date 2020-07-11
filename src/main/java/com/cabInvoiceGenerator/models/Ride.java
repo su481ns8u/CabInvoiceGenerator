@@ -1,4 +1,6 @@
-package com.cabInvoiceGenerator;
+package com.cabInvoiceGenerator.models;
+
+import com.cabInvoiceGenerator.Services.InvoiceGenerator;
 
 public class Ride {
     public final double distance;

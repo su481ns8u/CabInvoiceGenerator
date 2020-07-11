@@ -1,6 +1,6 @@
-package com.cabInvoiceGenerator;
+package com.cabInvoiceGenerator.models;
 
-class InvoiceSummary {
+public class InvoiceSummary {
     public int numberOfRides;
     public double totalFare;
     public double averageFare;

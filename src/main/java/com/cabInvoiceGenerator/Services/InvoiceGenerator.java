@@ -1,4 +1,9 @@
-package com.cabInvoiceGenerator;
+package com.cabInvoiceGenerator.Services;
+
+import com.cabInvoiceGenerator.Exceptions.InvoiceException;
+import com.cabInvoiceGenerator.models.InvoiceSummary;
+import com.cabInvoiceGenerator.models.Ride;
+import com.cabInvoiceGenerator.Repositories.RideRepository;
 
 import java.util.Arrays;
 
@@ -49,7 +54,7 @@ public class InvoiceGenerator {
      * @param userId
      * @param rides
      */
-    public void addRides(String userId, Ride[] rides) {
+    public void addRides(String userId, Ride[] rides) throws InvoiceException {
         rideRepository.addRides(userId, rides);
     }
 
@@ -58,7 +63,7 @@ public class InvoiceGenerator {
      * @param userId
      * @return
      */
-    public InvoiceSummary getInvoiceSummary(String userId) {
+    public InvoiceSummary getInvoiceSummary(String userId) throws InvoiceException {
         return this.calculateFare(rideRepository.getRides(userId));
     }
 
